@@ -39,6 +39,8 @@ pub fn Channel(comptime T: type) type {
 
             self.queue.push(item);
             self.not_empty.signal();
+
+            return true;
         }
 
         pub fn pop(self: *Self) ?T {
