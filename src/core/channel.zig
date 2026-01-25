@@ -27,6 +27,7 @@ pub fn Channel(comptime T: type) type {
                 self.not_full.wait(&self.mutex);
             }
 
+            if (self.is_closed) return error.Closed;
             self.queue.push(item);
             self.not_empty.signal();
         }
@@ -61,7 +62,7 @@ pub fn Channel(comptime T: type) type {
             self.mutex.lock();
             defer self.mutex.unlock();
 
-            if (self.is_closed or self.queue.isEmpty()) return null;
+            if (self.queue.isEmpty()) return null;
 
             const item = self.queue.pop();
             self.not_full.signal();
