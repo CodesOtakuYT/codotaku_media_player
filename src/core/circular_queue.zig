@@ -20,7 +20,7 @@ pub fn CircularQueue(comptime T: type) type {
         }
 
         fn index(self: *const Self, i: Index) Index {
-            return i % self.mask;
+            return i & self.mask;
         }
 
         pub fn isEmpty(self: *const Self) bool {
