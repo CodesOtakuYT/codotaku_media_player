@@ -11,7 +11,7 @@ pub fn CircularQueue(comptime T: type) type {
         head: Index = 0,
         tail: Index = 0,
 
-        fn init(items: []T) Self {
+        pub fn init(items: []T) Self {
             assert(std.math.isPowerOfTwo(items.len));
             return .{
                 .items = items.ptr,
