@@ -1,7 +1,7 @@
 const c = @import("c.zig").c;
 const checkFF = @import("internal.zig").checkFF;
-const Packet = @import("packet.zig");
-const Stream = @import("stream.zig");
+pub const Packet = @import("packet.zig");
+pub const Stream = @import("stream.zig");
 
 const Self = @This();
 ptr: *c.AVFormatContext,
