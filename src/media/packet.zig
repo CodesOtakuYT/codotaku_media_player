@@ -20,6 +20,10 @@ pub fn deinit(self: *Self) void {
     c.av_packet_free(&ptr);
 }
 
+pub fn unref(self: *Self) void {
+    c.av_packet_unref(self.ptr);
+}
+
 pub fn stream_index(self: Self) usize {
     return @intCast(self.ptr.stream_index);
 }

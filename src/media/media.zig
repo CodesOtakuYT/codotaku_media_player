@@ -81,12 +81,15 @@ fn feed(self: *Self) !void {
     else if (self.packet.stream_index() == self.audio_stream.index())
         &self.audio_decoder
     else {
+        self.packet.unref();
         self.is_pending_packet = false;
         return;
     };
 
-    if (try decoder.push(self.packet))
+    if (try decoder.push(self.packet)) {
+        self.packet.unref();
         self.is_pending_packet = false;
+    }
 }
 
 pub fn next(self: *Self) !?Decoder.Frame {
