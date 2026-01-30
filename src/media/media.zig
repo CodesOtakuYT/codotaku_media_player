@@ -99,12 +99,6 @@ pub fn next(self: *Self) !?Decoder.Frame {
     }
 }
 
-test "hello" {
-    const std = @import("std");
-    var media = try Self.init("/home/codotaku/2026-01-24 07-16-00.mp4");
-    defer media.deinit();
-
-    while (try media.next()) |frame| {
-        std.debug.print("{d}\n", .{frame.ptr.pts});
-    }
+pub fn dimensions(self: *Self) [2]i32 {
+    return .{ self.video_decoder.ptr.width, self.video_decoder.ptr.height };
 }

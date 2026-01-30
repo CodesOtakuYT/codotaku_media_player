@@ -1,5 +1,6 @@
 pub const Window = @import("window.zig");
 pub const Event = @import("event.zig").Event;
+pub const Texture = @import("texture.zig");
 
 const c = @import("c.zig").c;
 const checkSDL = @import("internal.zig").checkSDL;
